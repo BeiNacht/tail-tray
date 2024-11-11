@@ -144,7 +144,7 @@ void TrayMenuManager::buildConnectedMenu(TailStatus const* pTailStatus) const {
     for (const auto& dev : pTailStatus->peers) {
         if (dev->id != pTailStatus->self->id) {
             auto name = dev->dnsName.replace(pTailStatus->magicDnsSuffix, "");
-            name.chop(2);
+            name.chop(1);
             QAction* action;
             if (!dev->online) {
                 action = netDevs->addAction(name + " (offline)");
@@ -277,7 +277,7 @@ void TrayMenuManager::buildConnectedMenu(TailStatus const* pTailStatus) const {
         const auto& dev = pTailStatus->peers[i];
         if (dev->online && dev->id != pTailStatus->self->id && dev->exitNodeOption) {
             auto name = dev->dnsName.replace(pTailStatus->magicDnsSuffix, "");
-            name.chop(2);
+            name.chop(1);
             auto* action = exitNodes->addAction(name);
             action->setCheckable(true);
             action->setChecked(dev->exitNode);
